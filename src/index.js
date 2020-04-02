@@ -8,7 +8,7 @@ const app = new App({
 
 const quizId = 1
 
-let currentQuestionForUser = findQuestion(FOOTBALL_QUESTIONS[0].question_id)
+let currentQuestionForUser
 let score = 0
 
 const FOOTBALL_QUESTIONS = [{
