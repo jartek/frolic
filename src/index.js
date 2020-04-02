@@ -36,7 +36,7 @@ app.command('/frolic', async ({ command, ack, say }) => {
   }
 })
 
-app.message('*', async ({ message, say }) => {
+app.message(new RegExp(/.*/), async ({ message, say }) => {
   await say('You\'re right!')
 });
 
