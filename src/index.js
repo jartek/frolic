@@ -31,7 +31,7 @@ app.command('/frolic', async ({ command, ack, say }) => {
               text: 'Example Image',
               emoji: true
             },
-            image_url: questions[0],
+            image_url: questions[0].image_url,
             alt_text: 'Example Image'
           }
         ]
