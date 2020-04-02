@@ -18,17 +18,18 @@ app.command('/frolic', async ({ command, ack, say }) => {
 
   try {
     await say({
-      blocks: [
-        {
-          type: 'image',
-          text: {
-            type: 'mrkdwn',
-            text: questions[0].text
-          },
-          image_url: questions[0].image_url,
-          alt_text: 'Example Image'
+      blocks: [{
+        type: 'image',
+        image_url: 'https://api.slack.com/img/blocks/bkb_template_images/goldengate.png',
+        alt_text: 'Example Image'
+      },
+      {
+        type: 'section',
+        text: {
+          type: 'mrkdwn',
+          text: 'This is a mrkdwn section block :ghost: *this is bold*, and ~this is crossed out~, and <https://google.com|this is a link>'
         }
-      ]
+      }]
     })
   } catch (error) {
     console.error(error)
