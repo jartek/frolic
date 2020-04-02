@@ -48,6 +48,11 @@ app.command('/frolic', async ({ command, ack, say }) => {
   })
 })
 
+app.action(/.*/, async ({ action, ack, say }) => {
+  await ack()
+  console.log(action)
+})
+
 app.action('start_frolic', async ({ action, ack, say }) => {
   await ack()
 
