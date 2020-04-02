@@ -15,15 +15,14 @@ const app = new App({
 app.command('/frolic', async ({ command, ack, say }) => {
   // Acknowledge command request
   await ack()
-  console.log(command)
+
   try {
     await app.client.views.publish({
       token: process.env.SLACK_BOT_TOKEN,
       view: {
         type: 'home',
-
         callback_id: 'home_view',
-
+        user_id: command.user_id,
         blocks: [
           {
             type: 'image',
