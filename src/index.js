@@ -198,7 +198,7 @@ app.action('start_frolic', async ({ action, ack, say }) => {
 app.action('theme_selected', async ({ action, ack, say }) => {
   await ack()
 
-  console.log(action.text)
+  console.log(action)
   currentQuestionForUser = findQuestion(FOOTBALL_QUESTIONS[0].question_id)
 
   await say(buildQuestionBlock(currentQuestionForUser))
