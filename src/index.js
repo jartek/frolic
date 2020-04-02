@@ -1,7 +1,10 @@
 const { App } = require('@slack/bolt')
 
 const questions = [
-  'https://resources.premierleague.com/photos/2020/03/13/ea2ae5c3-f75b-4681-b9d0-d7ef0126b0e9/Statement_Graphic_PL_FA_EFL_Lilac.png?width=930&height=620'
+  {
+    text: '',
+    image_url: 'https://resources.premierleague.com/photos/2020/03/13/ea2ae5c3-f75b-4681-b9d0-d7ef0126b0e9/Statement_Graphic_PL_FA_EFL_Lilac.png?width=930&height=620'
+  }
 ]
 
 const app = new App({
@@ -12,12 +15,13 @@ const app = new App({
 app.command('/frolic', async ({ command, ack, say }) => {
   // Acknowledge command request
   await ack()
-
+  console.log(command)
   try {
     await app.client.views.publish({
       token: process.env.SLACK_BOT_TOKEN,
       view: {
         type: 'home',
+
         callback_id: 'home_view',
 
         blocks: [
