@@ -1,5 +1,9 @@
 const { App } = require('@slack/bolt');
-debugger
+
+const questions = [
+  "https://resources.premierleague.com/photos/2020/03/13/ea2ae5c3-f75b-4681-b9d0-d7ef0126b0e9/Statement_Graphic_PL_FA_EFL_Lilac.png?width=930&height=620"
+]
+
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
   signingSecret: process.env.SLACK_SIGNING_SECRET
@@ -12,6 +16,8 @@ app.event('app_home_opened', ({ event, say }) => {
 app.command('/frolic', async ({ command, ack, say }) => {
   // Acknowledge command request
   await ack();
+
+  console.log(command)
 
   await say("Should this start?");
 });
