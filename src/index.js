@@ -48,17 +48,14 @@ const textQuestionTemplate = (question) => {
 }
 
 const buildQuestionBlock = (questionId) => {
-  const questionToBeAsked = FOOTBALL_QUESTIONS.filter(question => question.question_id === questionId)
+  const questionToBeAsked = FOOTBALL_QUESTIONS.find(question => question.question_id === questionId)
   const questionTemplate = { blocks: [] }
-  console.log('questionToBeAsked' + JSON.stringify(questionToBeAsked))
 
   if (questionToBeAsked.image_url.length > 0) {
     questionTemplate.blocks.push(imageTemplate(questionToBeAsked))
   }
 
   questionTemplate.blocks.push(textQuestionTemplate(questionToBeAsked))
-
-  console.log(JSON.stringify(questionTemplate))
 
   return questionTemplate
 }
@@ -147,7 +144,6 @@ app.action('start_frolic', async ({ action, ack, say }) => {
 app.action('theme_selected', async ({ action, ack, say }) => {
   await ack()
   currentQuestionForUser = FOOTBALL_QUESTIONS[0].question_id
-  console.log('currentQuestionForUser' + currentQuestionForUser)
 
   await say(buildQuestionBlock(currentQuestionForUser))
 })
