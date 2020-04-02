@@ -9,6 +9,7 @@ const app = new App({
 const quizId = 1
 
 let currentQuestionForUser = 0
+let score = 0
 
 const FOOTBALL_QUESTIONS = [{
   quiz_id: quizId,
@@ -146,6 +147,10 @@ app.action('theme_selected', async ({ action, ack, say }) => {
   currentQuestionForUser = FOOTBALL_QUESTIONS[0].question_id
 
   await say(buildQuestionBlock(currentQuestionForUser))
+})
+
+app.message(new RegExp(/.*/), async ({ message, say }) => {
+  console.log(message)
 })
 
 ;(async () => {
