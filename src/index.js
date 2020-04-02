@@ -50,7 +50,7 @@ const textQuestionTemplate = (question) => {
 const buildQuestionBlock = (questionId) => {
   const questionToBeAsked = FOOTBALL_QUESTIONS.filter(question => question.question_id === questionId)
   const questionTemplate = { blocks: [] }
-  console.log('questionToBeAsked' + questionToBeAsked.toString())
+  console.log('questionToBeAsked' + JSON.stringify(questionToBeAsked))
 
   if (questionToBeAsked.image_url.length > 0) {
     questionTemplate.blocks.push(imageTemplate(questionToBeAsked))
@@ -58,7 +58,7 @@ const buildQuestionBlock = (questionId) => {
 
   questionTemplate.blocks.push(textQuestionTemplate(questionToBeAsked))
 
-  console.log(questionTemplate.toString())
+  console.log(JSON.stringify(questionTemplate))
 
   return questionTemplate
 }
