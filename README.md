@@ -7,8 +7,6 @@ sequenceDiagram
     FrolicApp ->> FrolicApp: Create a quiz room for that org
     FrolicApp ->> User: Ask for a theme?
     User ->> FrolicApp: Select a theme
-    FrolicApp ->> User: How many Questions?
-    User ->> FrolicApp: 5 questions
     FrolicApp ->> FrolicApp: Select questions for quiz based on params
     FrolicApp ->> Slack: Inform All users that quiz is starting
     Slack ->> FrolicBot: Send messages to everyone
