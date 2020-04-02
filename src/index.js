@@ -2,7 +2,7 @@ const { App } = require('@slack/bolt')
 
 const questions = [
   {
-    text: '',
+    text: 'Question text',
     image_url: 'https://resources.premierleague.com/photos/2020/03/13/ea2ae5c3-f75b-4681-b9d0-d7ef0126b0e9/Statement_Graphic_PL_FA_EFL_Lilac.png?width=930&height=620'
   }
 ]
@@ -17,25 +17,18 @@ app.command('/frolic', async ({ command, ack, say }) => {
   await ack()
 
   try {
-    await app.client.views.publish({
-      token: process.env.SLACK_BOT_TOKEN,
-      user_id: command.user_id,
-      view: {
-        type: 'home',
-        callback_id: 'home_view',
-        blocks: [
-          {
-            type: 'image',
-            title: {
-              type: 'plain_text',
-              text: 'Example Image',
-              emoji: true
-            },
-            image_url: questions[0].image_url,
-            alt_text: 'Example Image'
-          }
-        ]
-      }
+    await say({
+      blocks: [
+        {
+          type: 'image',
+          text: {
+            type: 'mrkdwn',
+            text: questions[0].text
+          },
+          image_url: questions[0].image_url,
+          alt_text: 'Example Image'
+        }
+      ]
     })
   } catch (error) {
     console.error(error)
