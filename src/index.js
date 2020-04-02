@@ -27,13 +27,17 @@ app.command('/frolic', async ({ command, ack, say }) => {
         type: 'section',
         text: {
           type: 'mrkdwn',
-          text: questions[0].image_url
+          text: questions[0].text
         }
       }]
     })
   } catch (error) {
     console.error(error)
   }
+})
+
+app.message('football', async ({ message, say }) => {
+  await say("You're right!")
 });
 
 (async () => {
