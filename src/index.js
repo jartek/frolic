@@ -9,7 +9,7 @@ app.event('app_home_opened', ({ event, say }) => {
   say(`Hello world, <@${event.user}>!`);
 });
 
-app.command('/start', async ({ command, ack, say }) => {
+app.command('/frolic', async ({ command, ack, say }) => {
   // Acknowledge command request
   await ack();
 
