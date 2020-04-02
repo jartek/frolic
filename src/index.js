@@ -29,21 +29,6 @@ app.command('/frolic', async ({ command, ack, say }) => {
           type: 'mrkdwn',
           text: questions[0].text
         }
-      }, {
-        type: 'input',
-        block_id: 'input123',
-        label: {
-          type: 'plain_text',
-          text: 'Label of input'
-        },
-        element: {
-          type: 'plain_text_input',
-          action_id: 'plain_input',
-          placeholder: {
-            type: 'plain_text',
-            text: 'Enter some plain text'
-          }
-        }
       }]
     })
   } catch (error) {
@@ -51,7 +36,7 @@ app.command('/frolic', async ({ command, ack, say }) => {
   }
 })
 
-app.message('football', async ({ message, say }) => {
+app.message('*', async ({ message, say }) => {
   await say('You\'re right!')
 });
 
