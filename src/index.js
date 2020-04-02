@@ -1,8 +1,9 @@
-const { App } = require('@slack/bolt')
+const { App, LogLevel } = require('@slack/bolt')
 
 const app = new App({
   token: process.env.SLACK_BOT_TOKEN,
-  signingSecret: process.env.SLACK_SIGNING_SECRET
+  signingSecret: process.env.SLACK_SIGNING_SECRET,
+  logLevel: LogLevel.DEBUG
 })
 
 app.command('/frolic', async ({ command, ack, say }) => {
@@ -46,11 +47,6 @@ app.command('/frolic', async ({ command, ack, say }) => {
       }
     ]
   })
-})
-
-app.action(/.*/, async ({ action, ack, say }) => {
-  await ack()
-  console.log(action)
 })
 
 app.action('start_frolic', async ({ action, ack, say }) => {
