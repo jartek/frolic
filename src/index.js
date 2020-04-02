@@ -52,7 +52,7 @@ app.command('/frolic', async ({ command, ack, say }) => {
 })
 
 app.message('football', async ({ message, say }) => {
-  await say('You're right!')
+  await say('You\'re right!')
 });
 
 (async () => {
