@@ -89,8 +89,7 @@ app.action('start_frolic', async ({ action, ack, say }) => {
 
 app.action('theme_selected', async ({ action, ack, say }) => {
   await ack()
-  console.log(action)
-  await say(action.value)
+  await say(`${action.value}`)
 })
 
 ;(async () => {
