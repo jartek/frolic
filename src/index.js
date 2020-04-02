@@ -163,6 +163,7 @@ app.message(new RegExp(/.*/), async ({ message, say }) => {
   if (currentQuestionForUser.trigger_question_id) {
     const nextQuestion = findQuestion(currentQuestionForUser.trigger_question_id)
     await say(buildQuestionBlock(nextQuestion))
+    currentQuestionForUser = nextQuestion
   } else {
     await say(`Your score is ${score}`)
   }
