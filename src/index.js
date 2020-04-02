@@ -57,6 +57,7 @@ app.command('/frolic', async ({ command, ack, say }) => {
         elements: [
           {
             type: 'button',
+            action_id: 'start_frolic',
             text: {
               type: 'plain_text',
               emoji: true,
@@ -67,6 +68,7 @@ app.command('/frolic', async ({ command, ack, say }) => {
           },
           {
             type: 'button',
+            action_id: 'uninterested',
             text: {
               type: 'plain_text',
               emoji: true,
@@ -79,6 +81,49 @@ app.command('/frolic', async ({ command, ack, say }) => {
       }
     ]
   })
+})
+
+app.action('/start_frolic', async ({ action, ack, say }) => {
+  await ack()
+
+  await say({
+    blocks: [
+      {
+        type: 'section',
+        text: {
+          type: 'mrkdwn',
+          text: 'Select a theme'
+        },
+        accessory: {
+          action_id: 'theme_selected',
+          type: 'static_select',
+          options: [
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Football',
+                emoji: true
+              },
+              value: 'football'
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Cricket',
+                emoji: true
+              },
+              value: 'cricket'
+            }
+          ]
+        }
+      }
+    ]
+  })
+})
+
+app.action('/start_frolic', async ({ action, ack, say }) => {
+  await ack()
+  await say(action.value)
 })
 
 (async () => {
