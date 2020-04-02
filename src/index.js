@@ -19,10 +19,10 @@ app.command('/frolic', async ({ command, ack, say }) => {
   try {
     await app.client.views.publish({
       token: process.env.SLACK_BOT_TOKEN,
+      user_id: command.user_id,
       view: {
         type: 'home',
         callback_id: 'home_view',
-        user_id: command.user_id,
         blocks: [
           {
             type: 'image',
