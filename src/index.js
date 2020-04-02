@@ -8,7 +8,7 @@ const app = new App({
 
 const quizId = 1
 
-let currentQuestionForUser = 0
+let currentQuestionForUser = findQuestion(FOOTBALL_QUESTIONS[0].question_id)
 let score = 0
 
 const FOOTBALL_QUESTIONS = [{
@@ -154,7 +154,6 @@ app.action('theme_selected', async ({ action, ack, say }) => {
 
 app.message(new RegExp(/.*/), async ({ message, say }) => {
   const answer = message.text.toLowerCase().trim()
-  currentQuestionForUser = findQuestion(FOOTBALL_QUESTIONS[0].question_id)
   // Check if answer is in list of valid question answers
   if (currentQuestionForUser.answers.includes(answer)) {
     score = score + 1
