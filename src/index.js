@@ -48,8 +48,11 @@ const textQuestionTemplate = (question) => {
   }
 }
 
-const buildQuestionBlock = (questionId) => {
-  const questionToBeAsked = FOOTBALL_QUESTIONS.find(question => question.question_id === questionId)
+const findQuestion = (questionId) => {
+  return FOOTBALL_QUESTIONS.find(question => question.question_id === questionId)
+}
+
+const buildQuestionBlock = (questionToBeAsked) => {
   const questionTemplate = { blocks: [] }
 
   if (questionToBeAsked.image_url.length > 0) {
@@ -144,13 +147,25 @@ app.action('start_frolic', async ({ action, ack, say }) => {
 
 app.action('theme_selected', async ({ action, ack, say }) => {
   await ack()
-  currentQuestionForUser = FOOTBALL_QUESTIONS[0].question_id
+  currentQuestionForUser = findQuestion(FOOTBALL_QUESTIONS[0].question_id)
 
   await say(buildQuestionBlock(currentQuestionForUser))
 })
 
 app.message(new RegExp(/.*/), async ({ message, say }) => {
-  console.log(message)
+  const answer = message.text.toLowerCase().trim()
+  currentQuestionForUser = findQuestion(FOOTBALL_QUESTIONS[0].question_id)
+  // Check if answer is in list of valid question answers
+  if (currentQuestionForUser.answers.includes(answer)) {
+    score = score + 1
+  }
+  // Find the next question
+  if (currentQuestionForUser.trigger_question_id) {
+    const nextQuestion = findQuestion(currentQuestionForUser.trigger_question_id)
+    await say(buildQuestionBlock(nextQuestion))
+  } else {
+    await say(`Your score is ${score}`)
+  }
 })
 
 ;(async () => {
