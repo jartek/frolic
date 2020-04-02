@@ -160,10 +160,10 @@ app.message(new RegExp(/.*/), async ({ message, say }) => {
     score = score + 1
   }
   // Find the next question
-  if (currentQuestionForUser.trigger_question_id) {
+  if (currentQuestionForUser.trigger_question_id !== null) {
     const nextQuestion = findQuestion(currentQuestionForUser.trigger_question_id)
-    await say(buildQuestionBlock(nextQuestion))
     currentQuestionForUser = nextQuestion
+    await say(buildQuestionBlock(nextQuestion))
   } else {
     await say(`Your score is ${score}`)
   }
