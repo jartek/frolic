@@ -20,14 +20,14 @@ app.command('/frolic', async ({ command, ack, say }) => {
     await say({
       blocks: [{
         type: 'image',
-        image_url: 'https://api.slack.com/img/blocks/bkb_template_images/goldengate.png',
-        alt_text: 'Example Image'
+        image_url: questions[0].image_url,
+        alt_text: questions[0].text
       },
       {
         type: 'section',
         text: {
           type: 'mrkdwn',
-          text: 'This is a mrkdwn section block :ghost: *this is bold*, and ~this is crossed out~, and <https://google.com|this is a link>'
+          text: questions[0].image_url
         }
       }]
     })
