@@ -9,6 +9,13 @@ app.event('app_home_opened', ({ event, say }) => {
   say(`Hello world, <@${event.user}>!`);
 });
 
+app.command('/start', async ({ command, ack, say }) => {
+  // Acknowledge command request
+  await ack();
+
+  await say("Should this start?");
+});
+
 (async () => {
   await app.start(process.env.PORT || 3000);
 })();
